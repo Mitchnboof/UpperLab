@@ -27,11 +27,13 @@ Notes:
 ## Adding a worker
 
 1. Install Ubuntu Server 24.04 (enable OpenSSH during install). Reserve its IP in the router.
-2. On the box:
+2. Get the script onto the box (repo is private, so no plain curl). SSH in, run `nano bootstrap-node.sh`,
+   paste the contents of `scripts/bootstrap-node.sh` from GitHub (open the file → copy raw), save with
+   Ctrl+O, Enter, Ctrl+X. Then:
    ```bash
-   curl -fsSL <raw url>/scripts/bootstrap-node.sh -o bootstrap-node.sh
    sudo bash bootstrap-node.sh nuc-01
    ```
+   Once the control node exists, it pushes this to new boxes over SSH instead.
    Laptop: add `--laptop` so it keeps running with the lid shut.
 3. Portainer → Environments → Add → Docker Standalone → Agent → `<ip>:9001`.
 4. Update the machines table above.
