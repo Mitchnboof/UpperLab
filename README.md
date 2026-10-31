@@ -1,4 +1,4 @@
-# homelab
+# UpperLab
 
 Single source of truth for the trading homelab. Every machine pulls from here; secrets live in `.env` files on the boxes, never in git.
 
