@@ -13,13 +13,21 @@ Single source of truth for the trading homelab. Every machine pulls from here; s
 
 ## Machines
 
+Core (rack):
+
 | Host | IP | CPU | RAM | Disk | Role | Status |
 |---|---|---|---|---|---|---|
-| Phonenix-BPC-2000 | 192.168.1.161 | ? | 7.6 GB | 136 GB | Live freqtrade swarm, Portainer server, bitcoind | Running, RAM maxed |
-| nuc-02 (NUC i5) | TBD | i5 | 8 GB | 120 GB | Control node + bot worker (rack) | Installing Ubuntu Server |
-| HP mini i5 | TBD | i5 | ? | ? | Bot worker (heavy bots if more RAM) | Needs repair |
-| HP laptop | TBD | ? | ? | ? | Backtest grinder (temporary, likely replaced by a compact box) | To deploy |
-| nuc-01 | ? | ? | ? | ? | Home Assistant — house brain (rack) | **Not managed here**: no scripts, no bots |
+| nuc-02 (NUC i5) | TBD | i5 | 8 GB | 120 GB | Trade machine + control node | Installing Ubuntu Server |
+| Phonenix-BPC-2000 | 192.168.1.161 | ? | 7.6 GB | 136 GB | Trade machine (live swarm), Portainer server, bitcoind | Running, RAM maxed |
+| QNAP NAS | ? | | | ? | Storage: market data, backtest results, backups | Running |
+| nuc-01 | ? | ? | ? | ? | Home Assistant — house brain | **Not managed here**: no scripts, no bots |
+
+Worker nodes (extra capacity: backtests, parallel dry-runs):
+
+| Host | IP | CPU | RAM | Disk | Role | Status |
+|---|---|---|---|---|---|---|
+| hp-mini (HP i5 mini desktop) | TBD | i5 | ? | ? | Worker node | Needs repair |
+| hp-laptop | TBD | ? | ? | ? | Worker node | To deploy |
 
 Notes:
 - 120 GB disk on the NUC: no bitcoind there (a full node is 700 GB+; pruned is possible but not worth it). Keep market data on the NAS.
