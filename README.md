@@ -36,4 +36,14 @@ Notes:
    Once the control node exists, it pushes this to new boxes over SSH instead.
    Laptop: add `--laptop` so it keeps running with the lid shut.
 3. Portainer → Environments → Add → Docker Standalone → Agent → `<ip>:9001`.
-4. Update the machines table above.
+4. Add the box to `inventory/hosts` and the machines table above.
+
+## Control node (HP mini)
+
+After `bootstrap-node.sh hp-mini`, run as your normal user (not sudo):
+
+```bash
+bash ~/UpperLab/scripts/setup-control-node.sh
+```
+
+First time there's no clone yet, so paste it in with nano like the bootstrap script. It logs in to GitHub, clones this repo to `~/UpperLab`, makes an SSH key and copies it to every box in `inventory/hosts`, then runs `claude remote-control` as a systemd user service so the box is always in the Claude app.
