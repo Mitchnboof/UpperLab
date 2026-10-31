@@ -1,5 +1,5 @@
 # name        ip              ssh-user     role
 bpc-2000      192.168.1.161   mitchnboof   worker (live swarm, portainer server, bitcoind)
-# hp-mini     TBD             mitchnboof   control + worker
-# nuc-01      TBD             mitchnboof   worker
+# nuc-01      TBD             mitchnboof   control + worker
+# hp-mini     TBD             mitchnboof   worker
 # hp-laptop   TBD             mitchnboof   backtest worker

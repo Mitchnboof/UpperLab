@@ -7,7 +7,7 @@ Single source of truth for the trading homelab. Every machine pulls from here; s
 | Layer | Where | What |
 |---|---|---|
 | Brain | this repo | compose files, scripts, strategies, docs |
-| Hands | control node (HP mini i5) | always-on Claude remote-control, SSH keys to all boxes, Portainer hub |
+| Hands | control node (NUC i5) | always-on Claude remote-control, SSH keys to all boxes, Portainer hub |
 | Workers | BPC-2000, NUC, HP laptop | Docker + Portainer Agent, run bot stacks |
 | Storage | QNAP NAS | shared market data, backtest results, nightly DB backups |
 
@@ -16,8 +16,8 @@ Single source of truth for the trading homelab. Every machine pulls from here; s
 | Host | IP | CPU | RAM | Disk | Role | Status |
 |---|---|---|---|---|---|---|
 | Phonenix-BPC-2000 | 192.168.1.161 | ? | 7.6 GB | 136 GB | Live freqtrade swarm, Portainer server, bitcoind | Running, RAM maxed |
-| NUC i5 | TBD | i5 | 8 GB | 120 GB | Bot worker / parallel dry-runs | To deploy |
-| HP mini i5 | TBD | i5 | ? | ? | Control node + bots | To deploy |
+| nuc-01 (NUC i5) | TBD | i5 | 8 GB | 120 GB | Control node + bot worker | Installing Ubuntu Server |
+| HP mini i5 | TBD | i5 | ? | ? | Bot worker (heavy bots if more RAM) | Needs repair |
 | HP laptop | TBD | ? | ? | ? | Backtest grinder | To deploy |
 
 Notes:
@@ -38,9 +38,9 @@ Notes:
 3. Portainer → Environments → Add → Docker Standalone → Agent → `<ip>:9001`.
 4. Add the box to `inventory/hosts` and the machines table above.
 
-## Control node (HP mini)
+## Control node (nuc-01)
 
-After `bootstrap-node.sh hp-mini`, run as your normal user (not sudo):
+After `bootstrap-node.sh nuc-01`, run as your normal user (not sudo):
 
 ```bash
 bash ~/UpperLab/scripts/setup-control-node.sh
