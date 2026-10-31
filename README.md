@@ -7,8 +7,8 @@ Single source of truth for the trading homelab. Every machine pulls from here; s
 | Layer | Where | What |
 |---|---|---|
 | Brain | this repo | compose files, scripts, strategies, docs |
-| Hands | control node (NUC i5) | always-on Claude remote-control, SSH keys to all boxes, Portainer hub |
-| Workers | BPC-2000, NUC, HP laptop | Docker + Portainer Agent, run bot stacks |
+| Hands | control node (NUC i5) | always-on Claude remote-control, SSH keys to all boxes (Portainer server stays on BPC-2000 for now) |
+| Workers | BPC-2000, NUC, HP mini, HP laptop | Docker + Portainer Agent, run bot stacks |
 | Storage | QNAP NAS | shared market data, backtest results, nightly DB backups |
 
 ## Machines
