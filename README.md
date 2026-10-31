@@ -7,7 +7,7 @@ Single source of truth for the trading homelab. Every machine pulls from here; s
 | Layer | Where | What |
 |---|---|---|
 | Brain | this repo | compose files, scripts, strategies, docs |
-| Hands | control node (NUC i5) | always-on Claude remote-control, SSH keys to all boxes (Portainer server stays on BPC-2000 for now) |
+| Hands | control node (nuc-02) | always-on Claude remote-control, SSH keys to all boxes (Portainer server stays on BPC-2000 for now) |
 | Workers | BPC-2000, NUC, HP mini, HP laptop | Docker + Portainer Agent, run bot stacks |
 | Storage | QNAP NAS | shared market data, backtest results, nightly DB backups |
 
@@ -16,9 +16,10 @@ Single source of truth for the trading homelab. Every machine pulls from here; s
 | Host | IP | CPU | RAM | Disk | Role | Status |
 |---|---|---|---|---|---|---|
 | Phonenix-BPC-2000 | 192.168.1.161 | ? | 7.6 GB | 136 GB | Live freqtrade swarm, Portainer server, bitcoind | Running, RAM maxed |
-| nuc-01 (NUC i5) | TBD | i5 | 8 GB | 120 GB | Control node + bot worker | Installing Ubuntu Server |
+| nuc-02 (NUC i5) | TBD | i5 | 8 GB | 120 GB | Control node + bot worker (rack) | Installing Ubuntu Server |
 | HP mini i5 | TBD | i5 | ? | ? | Bot worker (heavy bots if more RAM) | Needs repair |
-| HP laptop | TBD | ? | ? | ? | Backtest grinder | To deploy |
+| HP laptop | TBD | ? | ? | ? | Backtest grinder (temporary, likely replaced by a compact box) | To deploy |
+| nuc-01 | ? | ? | ? | ? | Home Assistant — house brain (rack) | **Not managed here**: no scripts, no bots |
 
 Notes:
 - 120 GB disk on the NUC: no bitcoind there (a full node is 700 GB+; pruned is possible but not worth it). Keep market data on the NAS.
@@ -31,16 +32,16 @@ Notes:
    paste the contents of `scripts/bootstrap-node.sh` from GitHub (open the file → copy raw), save with
    Ctrl+O, Enter, Ctrl+X. Then:
    ```bash
-   sudo bash bootstrap-node.sh nuc-01
+   sudo bash bootstrap-node.sh nuc-03
    ```
    Once the control node exists, it pushes this to new boxes over SSH instead.
    Laptop: add `--laptop` so it keeps running with the lid shut.
 3. Portainer → Environments → Add → Docker Standalone → Agent → `<ip>:9001`.
 4. Add the box to `inventory/hosts` and the machines table above.
 
-## Control node (nuc-01)
+## Control node (nuc-02)
 
-After `bootstrap-node.sh nuc-01`, run as your normal user (not sudo):
+After `bootstrap-node.sh nuc-02`, run as your normal user (not sudo):
 
 ```bash
 bash ~/UpperLab/scripts/setup-control-node.sh

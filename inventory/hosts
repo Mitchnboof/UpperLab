@@ -1,5 +1,7 @@
 # name        ip              ssh-user     role
+# Every uncommented line gets SSH keys + config from setup-control-node.sh.
+# nuc-01 (Home Assistant, house brain) is deliberately NOT listed: hands off.
 bpc-2000      192.168.1.161   mitchnboof   worker (live swarm, portainer server, bitcoind)
-# nuc-01      TBD             mitchnboof   control + worker
+# nuc-02      TBD             mitchnboof   control + worker (rack)
 # hp-mini     TBD             mitchnboof   worker
-# hp-laptop   TBD             mitchnboof   backtest worker
+# hp-laptop   TBD             mitchnboof   backtest worker (temporary)
