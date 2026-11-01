@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Bootstrap a fresh Ubuntu Server 24.04 box as a homelab Docker worker.
+# Bootstrap a fresh Ubuntu Server (26.04 or 24.04 LTS) box as a homelab Docker worker.
 #
 # Usage (on the new machine, as your normal user):
 #   curl -fsSL <raw url of this file> -o bootstrap-node.sh

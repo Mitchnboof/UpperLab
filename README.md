@@ -35,7 +35,7 @@ Notes:
 
 ## Adding a worker
 
-1. Install Ubuntu Server 24.04 (enable OpenSSH during install). Reserve its IP in the router.
+1. Install Ubuntu Server 26.04 LTS (skip the featured snaps; enable OpenSSH during install). Reserve its IP in the router.
 2. Get the script onto the box (repo is private, so no plain curl). SSH in, run `nano bootstrap-node.sh`,
    paste the contents of `scripts/bootstrap-node.sh` from GitHub (open the file → copy raw), save with
    Ctrl+O, Enter, Ctrl+X. Then:
