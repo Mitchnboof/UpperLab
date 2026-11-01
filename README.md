@@ -27,7 +27,7 @@ Worker nodes (extra capacity: backtests, parallel dry-runs):
 | Host | IP | CPU | RAM | Disk | Role | Status |
 |---|---|---|---|---|---|---|
 | hp-mini (HP i5 mini desktop) | TBD | i5 | ? | ? | Worker node | Needs repair |
-| hp-laptop | TBD | ? | ? | ? | Worker node | Ex-work unit, USB boot locked in BIOS |
+| hplappy1 (HP laptop) | TBD | ? | ? | ? | Worker node | Ubuntu Server installed, needs bootstrap (`--laptop`) |
 
 Notes:
 - 120 GB disk on the NUC: no bitcoind there (a full node is 700 GB+; pruned is possible but not worth it). Keep market data on the NAS.
