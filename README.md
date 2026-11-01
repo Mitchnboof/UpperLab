@@ -27,7 +27,7 @@ Worker nodes (extra capacity: backtests, parallel dry-runs):
 | Host | IP | CPU | RAM | Disk | Role | Status |
 |---|---|---|---|---|---|---|
 | hp-mini (HP i5 mini desktop) | TBD | i5 | ? | ? | Worker node | Needs repair |
-| hplappy1 (HP laptop) | 192.168.1.29 | ? | ? | ? | Worker node | Ubuntu Server installed, needs bootstrap (`--laptop`) |
+| hplappy1 (HP laptop) | 192.168.1.29 (Wi-Fi) | ? | ? | ? | Worker node + **temporary control node** while nuc-02 is in repair | Bootstrapped, Portainer agent up, claude-remote service running |
 
 Notes:
 - 120 GB disk on the NUC: no bitcoind there (a full node is 700 GB+; pruned is possible but not worth it). Keep market data on the NAS.
