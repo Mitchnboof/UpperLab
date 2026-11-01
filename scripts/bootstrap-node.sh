@@ -40,9 +40,12 @@ hostnamectl set-hostname "$HOSTNAME_NEW"
 timedatectl set-timezone "$TIMEZONE"
 
 echo "==> Base packages"
+# Never stop for prompts (needrestart's "restart services?" / "new kernel" boxes
+# block forever when output is piped through tee)
+export DEBIAN_FRONTEND=noninteractive NEEDRESTART_MODE=a NEEDRESTART_SUSPEND=1
 apt-get update -q
-DEBIAN_FRONTEND=noninteractive apt-get upgrade -yq
-DEBIAN_FRONTEND=noninteractive apt-get install -yq \
+apt-get upgrade -yq -o Dpkg::Options::=--force-confdef -o Dpkg::Options::=--force-confold
+apt-get install -yq \
   curl git tmux htop ufw nfs-common unattended-upgrades ca-certificates
 
 echo "==> Docker"
