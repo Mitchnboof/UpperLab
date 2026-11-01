@@ -36,13 +36,13 @@ Notes:
 ## Adding a worker
 
 1. Install Ubuntu Server 26.04 LTS (skip the featured snaps; enable OpenSSH during install). Reserve its IP in the router.
-2. Get the script onto the box (repo is private, so no plain curl). SSH in, run `nano bootstrap-node.sh`,
-   paste the contents of `scripts/bootstrap-node.sh` from GitHub (open the file → copy raw), save with
-   Ctrl+O, Enter, Ctrl+X. Then:
+2. SSH in, then pull this repo onto the box (no copy-pasting files):
    ```bash
-   sudo bash bootstrap-node.sh nuc-03
+   sudo apt-get install -y gh
+   gh auth login --hostname github.com --git-protocol https --web   # enter the code at github.com/login/device
+   gh repo clone Mitchnboof/UpperLab
+   sudo bash UpperLab/scripts/bootstrap-node.sh <hostname> 2>&1 | tee bootstrap.log
    ```
-   Once the control node exists, it pushes this to new boxes over SSH instead.
    Laptop: add `--laptop` so it keeps running with the lid shut.
 3. Portainer → Environments → Add → Docker Standalone → Agent → `<ip>:9001`.
 4. Add the box to `inventory/hosts` and the machines table above.
@@ -52,7 +52,7 @@ Notes:
 After `bootstrap-node.sh nuc-02`, run as your normal user (not sudo):
 
 ```bash
-bash ~/UpperLab/scripts/setup-control-node.sh
+bash UpperLab/scripts/setup-control-node.sh
 ```
 
-First time there's no clone yet, so paste it in with nano like the bootstrap script. It logs in to GitHub, clones this repo to `~/UpperLab`, makes an SSH key and copies it to every box in `inventory/hosts`, then runs `claude remote-control` as a systemd user service so the box is always in the Claude app.
+It reuses the GitHub login and `~/UpperLab` clone from step 2, makes an SSH key and copies it to every box in `inventory/hosts`, then runs `claude remote-control` as a systemd user service so the box is always in the Claude app.
