@@ -31,7 +31,7 @@ Worker nodes (extra capacity: backtests, parallel dry-runs):
 
 Notes:
 - 120 GB disk on the NUC: no bitcoind there (a full node is 700 GB+; pruned is possible but not worth it). Keep market data on the NAS.
-- BPC-2000 display: forced to 1080p60 via `/etc/lightdm/lightdm.conf.d/90-hdmi-1080p.conf` (the driver picked 1080i@100 after a crash → black screen).
+- BPC-2000 display: driver/MATE pick 1080i@100 (unsupported → black screen). Forced to 1080p60 in two places: login screen via `/etc/lightdm/lightdm.conf.d/90-hdmi-1080p.conf`, desktop session via `~/.config/autostart/force-1080p.desktop`. Quick fix over SSH: `DISPLAY=:0 XAUTHORITY=~/.Xauthority xrandr --output HDMI-1 --mode 1920x1080 --rate 60`
 
 ## Adding a worker
 
