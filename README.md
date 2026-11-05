@@ -26,7 +26,8 @@ Worker nodes (extra capacity: backtests, parallel dry-runs):
 
 | Host | IP | CPU | RAM | Disk | Role | Status |
 |---|---|---|---|---|---|---|
-| hp-mini (HP i5 mini desktop) | TBD | i5 | ? | ? | Worker node | Needs repair |
+| hp-micro (HP micro thin client) | TBD | ? | ? | ? | Worker node | New (free score), to bootstrap |
+| hp-mini (HP i5 mini desktop) | — | i5 | ? | ? | — | Parked (needs repair), replaced by hp-micro |
 | hplappy1 (HP laptop) | 192.168.1.29 (Wi-Fi) | ? | ? | ? | Worker node | Bootstrapped. Unplugged until the rack is built. Still has its own claude-remote service: disable it when back (see To do) |
 
 Notes:
@@ -63,6 +64,6 @@ It reuses the GitHub login and `~/UpperLab` clone from step 2, makes an SSH key 
 - [ ] **hplappy1**: can't reach the BPC over Wi-Fi (client/AP isolation?). Put it on ethernet in the rack, then re-run `setup-control-node.sh` on nuc-02 to copy the key across. Update its IP here if it changes.
 - [x] **nuc-02**: added to Portainer as an Agent (`192.168.1.25:9001`). Control node working: SSH key on bpc-2000, `claude-remote` service running.
 - [ ] *(on hold)* **BPC-2000**: add a second 8 GB DDR3 stick (one slot free) → 16 GB. Check the label on the current stick first (PC3 vs PC3L, SO-DIMM vs DIMM).
-- [ ] HP i5 mini desktop: repair, then bootstrap as a worker.
-- [ ] QNAP: NFS share for market data + nightly bot DB backups.
+- [ ] **hp-micro**: install Ubuntu Server, bootstrap as a worker. (HP i5 mini desktop parked.)
+- [ ] **QNAP** (in progress): `upperlab` NFS share, mounted at `/mnt/nas` on every box with `scripts/mount-nas.sh` → folders `market-data/`, `backtests/`, `backups/`. Then: nightly bot DB backups.
 - [ ] Consider moving bitcoind off the BPC (needs 700 GB+ disk).
