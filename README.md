@@ -61,9 +61,8 @@ It reuses the GitHub login and `~/UpperLab` clone from step 2, makes an SSH key 
 
 - [ ] **hplappy1** (when plugged back in): turn off its old control-node service so only nuc-02 runs one: `systemctl --user disable --now claude-remote`
 - [ ] **hplappy1**: can't reach the BPC over Wi-Fi (client/AP isolation?). Put it on ethernet in the rack, then re-run `setup-control-node.sh` on nuc-02 to copy the key across. Update its IP here if it changes.
-- [ ] **nuc-02**: add to Portainer as an Agent (`192.168.1.25:9001`) if not done.
-- [ ] **BPC-2000**: add a second 8 GB DDR3 stick (one slot free) → 16 GB. Check the label on the current stick first (PC3 vs PC3L, SO-DIMM vs DIMM).
-- [ ] Bring `~/docker/freqtrade-swarm` from the BPC into this repo (no secrets), so bots can be deployed to nuc-02 from here.
+- [x] **nuc-02**: added to Portainer as an Agent (`192.168.1.25:9001`). Control node working: SSH key on bpc-2000, `claude-remote` service running.
+- [ ] *(on hold)* **BPC-2000**: add a second 8 GB DDR3 stick (one slot free) → 16 GB. Check the label on the current stick first (PC3 vs PC3L, SO-DIMM vs DIMM).
 - [ ] HP i5 mini desktop: repair, then bootstrap as a worker.
 - [ ] QNAP: NFS share for market data + nightly bot DB backups.
 - [ ] Consider moving bitcoind off the BPC (needs 700 GB+ disk).
