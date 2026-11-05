@@ -27,7 +27,7 @@ Worker nodes (extra capacity: backtests, parallel dry-runs):
 | Host | IP | CPU | RAM | Disk | Role | Status |
 |---|---|---|---|---|---|---|
 | hp-mini (HP i5 mini desktop) | TBD | i5 | ? | ? | Worker node | Needs repair |
-| hplappy1 (HP laptop) | 192.168.1.29 (Wi-Fi) | ? | ? | ? | Worker node + **temporary control node** while nuc-02 is in repair | Bootstrapped, Portainer agent up, claude-remote service running |
+| hplappy1 (HP laptop) | 192.168.1.29 (Wi-Fi) | ? | ? | ? | Worker node | Bootstrapped. Unplugged until the rack is built. Still has its own claude-remote service: disable it when back (see To do) |
 
 Notes:
 - 120 GB disk on the NUC: no bitcoind there (a full node is 700 GB+; pruned is possible but not worth it). Keep market data on the NAS.
@@ -56,3 +56,14 @@ bash UpperLab/scripts/setup-control-node.sh
 ```
 
 It reuses the GitHub login and `~/UpperLab` clone from step 2, makes an SSH key and copies it to every box in `inventory/hosts`, then runs `claude remote-control` as a systemd user service so the box is always in the Claude app.
+
+## To do
+
+- [ ] **hplappy1** (when plugged back in): turn off its old control-node service so only nuc-02 runs one: `systemctl --user disable --now claude-remote`
+- [ ] **hplappy1**: can't reach the BPC over Wi-Fi (client/AP isolation?). Put it on ethernet in the rack, then re-run `setup-control-node.sh` on nuc-02 to copy the key across. Update its IP here if it changes.
+- [ ] **nuc-02**: add to Portainer as an Agent (`192.168.1.25:9001`) if not done.
+- [ ] **BPC-2000**: add a second 8 GB DDR3 stick (one slot free) → 16 GB. Check the label on the current stick first (PC3 vs PC3L, SO-DIMM vs DIMM).
+- [ ] Bring `~/docker/freqtrade-swarm` from the BPC into this repo (no secrets), so bots can be deployed to nuc-02 from here.
+- [ ] HP i5 mini desktop: repair, then bootstrap as a worker.
+- [ ] QNAP: NFS share for market data + nightly bot DB backups.
+- [ ] Consider moving bitcoind off the BPC (needs 700 GB+ disk).

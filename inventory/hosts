@@ -4,4 +4,4 @@
 bpc-2000      192.168.1.161   mitchnboof   worker (live swarm, portainer server, bitcoind)
 nuc-02        192.168.1.25    mitchnboof   control + worker (rack)
 # hp-mini     TBD             mitchnboof   worker
-hplappy1      192.168.1.29    mitchnboof   worker + temporary control node (HP laptop, Wi-Fi)
+hplappy1      192.168.1.29    mitchnboof   worker node (HP laptop, Wi-Fi)
