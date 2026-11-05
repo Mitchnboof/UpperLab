@@ -17,7 +17,7 @@ Core (rack):
 
 | Host | IP | CPU | RAM | Disk | Role | Status |
 |---|---|---|---|---|---|---|
-| nuc-02 (NUC i5) | 192.168.1.25 | i5 | 8 GB | 120 GB | Trade machine + control node | On repair bench (fan died, overheated mid-bootstrap) — re-run bootstrap-node.sh when back |
+| nuc-02 (NUC i5) | 192.168.1.25 | i5 | 8 GB | 120 GB | Trade machine + control node | New fan fitted, bootstrapped, 46°C under load |
 | Phonenix-BPC-2000 | 192.168.1.161 | ? | 7.6 GB | 136 GB | Trade machine (live swarm), Portainer server, bitcoind | Running, RAM maxed |
 | QNAP NAS | ? | | | ? | Storage: market data, backtest results, backups | Running |
 | nuc-01 | ? | ? | ? | ? | Home Assistant — house brain | **Not managed here**: no scripts, no bots |
