@@ -40,17 +40,18 @@ hostnamectl set-hostname "$HOSTNAME_NEW"
 timedatectl set-timezone "$TIMEZONE"
 
 echo "==> Base packages"
-# Never stop for prompts (needrestart's "restart services?" / "new kernel" boxes
-# block forever when output is piped through tee)
+# Never stop for prompts. stdin from /dev/null: with sudo + `| tee`, apt tries to
+# reset the terminal when it finishes and gets frozen (state T) by SIGTTOU.
 export DEBIAN_FRONTEND=noninteractive NEEDRESTART_MODE=a NEEDRESTART_SUSPEND=1
-apt-get update -q
-apt-get upgrade -yq -o Dpkg::Options::=--force-confdef -o Dpkg::Options::=--force-confold
+apt-get update -q </dev/null
+apt-get upgrade -yq -o Dpkg::Options::=--force-confdef -o Dpkg::Options::=--force-confold </dev/null
 apt-get install -yq \
-  curl git tmux htop ufw nfs-common unattended-upgrades ca-certificates
+  curl git tmux htop ufw nfs-common unattended-upgrades ca-certificates </dev/null
 
 echo "==> Docker"
 if ! command -v docker >/dev/null; then
-  curl -fsSL https://get.docker.com | sh
+  curl -fsSL https://get.docker.com -o /tmp/get-docker.sh
+  sh /tmp/get-docker.sh </dev/null
 fi
 usermod -aG docker "$REAL_USER"
 mkdir -p /etc/docker
